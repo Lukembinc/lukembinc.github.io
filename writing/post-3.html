@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Network Effects in Insurance Markets — LM</title>
+  <meta name="description" content="Why provider networks behave more like social graphs than spreadsheets, and what that means for modeling." />
+
+  <script>
+    (function(){
+      var s=localStorage.getItem('theme');
+      var p=window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme=s||(p?'dark':'light');
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html#bio" class="nav-logo">LM</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#timeline" class="nav-hide-mobile">Experience</a></li>
+        <li><a href="../index.html#projects" class="nav-hide-mobile">Projects</a></li>
+        <li><a href="index.html">All Posts</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☽</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="post-hero">
+    <a href="../index.html#projects" class="post-back">← Back to projects</a>
+    <h1 class="post-title">Network Effects in Insurance Markets</h1>
+    <div class="post-meta">
+      <span class="card-tag">Essay</span>
+      <span class="post-read-time">· 5 min read · July 2024</span>
+    </div>
+  </div>
+
+  <div class="post-body">
+    <p>
+      The word "network" in "provider network" is usually treated as a bureaucratic term — a list of contracted providers, organized by geography and specialty. But the more time I've spent modeling provider behavior, the more I've come to believe that healthcare provider networks are genuinely network-structured, in the graph-theoretic sense, and that failing to treat them as such leads to predictably bad models.
+    </p>
+
+    <h2>The Referral Graph</h2>
+    <p>
+      Start with referrals. A primary care dentist refers a patient with unusual gum recession to a periodontist. That periodontist refers the patient back for a crown, which routes through an endodontist. Each of these interactions creates an implicit edge in a graph. The strength of that edge — how often these particular providers exchange patients — varies enormously, and it carries information.
+    </p>
+    <p>
+      A provider who sits at the center of a dense referral cluster is not the same as an isolated provider who sees patients and sends them nowhere. The first is deeply embedded; the second is peripheral. These are structurally different positions, and they predict different behaviors: embedded providers are more stable, harder to churn, more influenced by the behavior of their neighbors in the graph.
+    </p>
+
+    <h2>Contagion and Cascade Risk</h2>
+    <p>
+      This is where the social graph framing becomes practically important. In social network analysis, highly connected nodes — hubs — can trigger cascade effects when they leave. The same dynamic applies in provider networks. When a high-centrality provider leaves, they don't just take their own patient volume; they disrupt the referral patterns of everyone connected to them.
+    </p>
+    <p>
+      I've seen this happen in regional dental networks: one departing oral surgeon caused measurable increases in churn risk for three referring general dentists in the following six months. The surgeon's departure created a structural gap that destabilized adjacent providers. If you model each provider as an independent unit, you miss this entirely.
+    </p>
+
+    <h2>What Graph Features Actually Help</h2>
+    <p>
+      Practically speaking, the graph features I've found most predictive in churn models are: degree centrality (how many unique providers does this provider co-appear with in claims), betweenness centrality (does this provider sit on paths between other providers), and a simple cluster coefficient measuring how tightly connected a provider's neighbors are to each other.
+    </p>
+    <p>
+      Computing these at scale requires some care — a naive adjacency matrix over hundreds of thousands of providers is computationally intractable — but sampling-based approximations work well for the purposes of feature generation.
+    </p>
+
+    <h2>The Practical Implication</h2>
+    <p>
+      Thinking in networks changes not just how you model, but how you intervene. Rather than treating every high-risk provider as an independent retention problem, you can prioritize by structural importance: which providers, if retained, preserve the most connectivity in the graph? That's a different question than "which providers have the highest individual churn score?" — and often it has a different answer.
+    </p>
+  </div>
+
+  <div class="post-nav">
+    <a href="post-2.html" class="post-nav-link prev">
+      <span class="post-nav-label">← Previous</span>
+      <span class="post-nav-title">The Hidden Complexity of NPI Data</span>
+    </a>
+    <a href="post-4.html" class="post-nav-link next">
+      <span class="post-nav-label">Next →</span>
+      <span class="post-nav-title">A Non-Technical Primer on Predictive Modeling</span>
+    </a>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-name">LM</div>
+      <div class="footer-url">lukembinc.github.io</div>
+      <ul class="footer-links">
+        <li><a href="#" aria-label="GitHub">GitHub</a></li>
+        <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
+      </ul>
+      <div class="footer-copyright">&copy; 2025. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

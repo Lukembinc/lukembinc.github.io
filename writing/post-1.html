@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Predicting Provider Churn in Dental Networks — LM</title>
+  <meta name="description" content="How survival analysis and gradient boosting can flag at-risk providers before they leave a network." />
+
+  <script>
+    (function(){
+      var s=localStorage.getItem('theme');
+      var p=window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme=s||(p?'dark':'light');
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html#bio" class="nav-logo">LM</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#timeline" class="nav-hide-mobile">Experience</a></li>
+        <li><a href="../index.html#projects" class="nav-hide-mobile">Projects</a></li>
+        <li><a href="index.html">All Posts</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☽</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="post-hero">
+    <a href="../index.html#projects" class="post-back">← Back to projects</a>
+    <h1 class="post-title">Predicting Provider Churn in Dental Networks</h1>
+    <div class="post-meta">
+      <span class="card-tag">Essay</span>
+      <span class="post-read-time">· 5 min read · November 2024</span>
+    </div>
+  </div>
+
+  <div class="post-body">
+    <p>
+      Provider churn is one of the quieter crises in insurance. A dentist leaves a network and, for a brief window, nobody notices — until a member calls to schedule a cleaning and finds their preferred provider is suddenly out-of-network. By then, the damage is done: a frustrated member, a gap in coverage, and a network that just got a little thinner.
+    </p>
+    <p>
+      My work on this problem started with a deceptively simple question: can we know a provider is leaving before they actually leave? It turns out, with the right modeling approach, the answer is yes — most of the time.
+    </p>
+
+    <h2>Why Churn Is Hard to Model</h2>
+    <p>
+      The first obstacle is data asymmetry. When a provider is actively working within a network, we have rich longitudinal data — claims volume, procedure mix, reimbursement rates, geography, patient panel demographics. The moment they leave, the data stream ends. This censoring problem is exactly what survival analysis was designed for, which is why it became the backbone of our approach.
+    </p>
+    <p>
+      Cox proportional hazards models give us a principled way to estimate the probability of departure at any given time horizon, conditioning on the covariates available up to that point. But survival models alone tell only part of the story. They're excellent at ranking relative risk, less good at capturing the complex, non-linear interactions that drive behavior in the real world.
+    </p>
+
+    <h2>Combining Survival Analysis with Gradient Boosting</h2>
+    <p>
+      Our production approach layers two methods. First, we use a Cox model to generate a baseline hazard score for each provider. This score captures time-varying covariates and respects the censored structure of the problem. Then, we use that hazard score as one feature among many in a gradient boosted tree — a model that excels at finding non-linear interactions and handling heterogeneous feature types.
+    </p>
+    <p>
+      The additional features fed to the gradient booster include: rolling averages of claim submission cadence, changes in the procedure diversity index (a metric we built to capture how broadly a provider uses the network), reimbursement rate deltas compared to regional peers, and signals from contract renewal touchpoints.
+    </p>
+    <p>
+      The resulting model achieved a meaningful improvement in early detection over both baseline approaches tested independently. More importantly, it gave our network management team a ranked watchlist — actionable intelligence rather than retrospective analysis.
+    </p>
+
+    <h2>Turning a Model Into a Tool</h2>
+    <p>
+      The hardest part of this project wasn't the modeling. It was translating model output into something a network manager could act on during a 30-minute call with a provider. We built a lightweight dashboard that surfaces the top-risk providers in each region, annotated with the features most contributing to their risk score. This moved the conversation from "our model says they might leave" to "here's what we're seeing, let's address it."
+    </p>
+    <p>
+      Data science earns its keep when it changes behavior. A churn score that sits in a database is just an artifact. One that prompts a proactive call — and keeps a provider in the network — is a measurable outcome.
+    </p>
+  </div>
+
+  <div class="post-nav">
+    <div class="post-nav-link prev">
+      <!-- No previous post -->
+    </div>
+    <a href="post-2.html" class="post-nav-link next">
+      <span class="post-nav-label">Next →</span>
+      <span class="post-nav-title">The Hidden Complexity of NPI Data</span>
+    </a>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-name">LM</div>
+      <div class="footer-url">lukembinc.github.io</div>
+      <ul class="footer-links">
+        <li><a href="#" aria-label="GitHub">GitHub</a></li>
+        <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
+      </ul>
+      <div class="footer-copyright">&copy; 2025. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

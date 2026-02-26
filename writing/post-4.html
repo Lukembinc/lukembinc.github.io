@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Non-Technical Primer on Predictive Modeling — LM</title>
+  <meta name="description" content="Written for the sales teams I support — what the model actually does and doesn't know." />
+
+  <script>
+    (function(){
+      var s=localStorage.getItem('theme');
+      var p=window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme=s||(p?'dark':'light');
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html#bio" class="nav-logo">LM</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#timeline" class="nav-hide-mobile">Experience</a></li>
+        <li><a href="../index.html#projects" class="nav-hide-mobile">Projects</a></li>
+        <li><a href="index.html">All Posts</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☽</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="post-hero">
+    <a href="../index.html#projects" class="post-back">← Back to projects</a>
+    <h1 class="post-title">A Non-Technical Primer on Predictive Modeling</h1>
+    <div class="post-meta">
+      <span class="card-tag">Explainer</span>
+      <span class="post-read-time">· 4 min read · May 2024</span>
+    </div>
+  </div>
+
+  <div class="post-body">
+    <p>
+      This piece is written for the sales and service colleagues I work with every day — people who use outputs from predictive models without necessarily wanting to know how the machine learning works. This is my attempt at a plain-language explanation.
+    </p>
+
+    <h2>What Is a Predictive Model?</h2>
+    <p>
+      A predictive model is a mathematical function that takes in information we already know and outputs an estimate about something we don't yet know. In our context: we feed the model information about a dental provider — how long they've been in the network, how active they've been, how their reimbursement rates compare to peers — and the model outputs a number between 0 and 1 representing the probability that this provider leaves the network in the next six months.
+    </p>
+    <p>
+      Think of it like a weather forecast. The model doesn't know for certain what will happen. It's saying: given everything we can observe, here's our best estimate of the odds. A score of 0.8 means the model thinks there's roughly an 80% chance of departure. Not a guarantee — a probability.
+    </p>
+
+    <h2>How Does It Learn?</h2>
+    <p>
+      The model was trained on historical data. We showed it thousands of examples of providers who stayed and providers who left, along with all the observable characteristics we had for each of them. Over many iterations, the algorithm found patterns — combinations of features that, historically, tended to precede departure. It encoded those patterns as a set of internal rules.
+    </p>
+    <p>
+      Importantly, the model does not understand <em>why</em> providers leave. It only knows what patterns tended to precede departure in the training data. A provider might be flagged as high-risk because their claims volume dropped sharply — not because the model knows they're considering retirement, but because claim volume drops have historically preceded departures.
+    </p>
+
+    <h2>What the Model Doesn't Know</h2>
+    <p>
+      This is the most important part. The model has no access to information that hasn't been captured in our systems. It doesn't know that a provider just had a conversation with a competitor. It doesn't know about a change in their personal circumstances. It doesn't know about a new practice opening nearby.
+    </p>
+    <p>
+      This is why the model score is a starting point for a conversation — not a conclusion. A high risk score means "pay attention to this provider." It doesn't mean "this provider is leaving." Your local knowledge, your relationships, and your judgment are irreplaceable inputs that the model simply cannot have.
+    </p>
+
+    <h2>How to Use It Well</h2>
+    <p>
+      The most effective way I've seen teams use the model: treat the risk score as a priority-sorting mechanism. Start your outreach with the highest-risk providers. When you make contact, the score can serve as a conversation prompt — you've noticed some changes in their activity, you wanted to check in, you want to make sure they have what they need. The model surfaces the signal; you handle the relationship.
+    </p>
+    <p>
+      If you ever have questions about a specific score or want to understand why a particular provider ranked as high-risk, I'm always happy to dig in. The goal is for this tool to make your work easier, not more confusing.
+    </p>
+  </div>
+
+  <div class="post-nav">
+    <a href="post-3.html" class="post-nav-link prev">
+      <span class="post-nav-label">← Previous</span>
+      <span class="post-nav-title">Network Effects in Insurance Markets</span>
+    </a>
+    <a href="post-5.html" class="post-nav-link next">
+      <span class="post-nav-label">Next →</span>
+      <span class="post-nav-title">Moving to Philadelphia: A Data Scientist's Take</span>
+    </a>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-name">LM</div>
+      <div class="footer-url">lukembinc.github.io</div>
+      <ul class="footer-links">
+        <li><a href="#" aria-label="GitHub">GitHub</a></li>
+        <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
+      </ul>
+      <div class="footer-copyright">&copy; 2025. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

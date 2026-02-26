@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LM — Data Scientist</title>
+  <meta name="description" content="Data Scientist at Humana. Healthcare optimist. Writing about data, healthcare, and technology." />
+
+  <!-- Theme applied before render to avoid flash -->
+  <script>
+    (function(){
+      var s=localStorage.getItem('theme');
+      var p=window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme=s||(p?'dark':'light');
+    })();
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#bio" class="nav-logo">LM</a>
+      <ul class="nav-links">
+        <li><a href="#timeline" class="nav-hide-mobile">Experience</a></li>
+        <li><a href="#projects" class="nav-hide-mobile">Writing</a></li>
+        <li><a href="writing/index.html">All Posts</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☽</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO / BIO
+       ============================================================ -->
+  <section class="hero" id="bio">
+    <div class="blob blob-1" aria-hidden="true"></div>
+    <div class="blob blob-2" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-heading">
+          Data Scientist.
+          <span class="accent-line">Healthcare optimist.</span>
+        </h1>
+        <p class="hero-bio">
+          I'm currently working as a Data Scientist at Humana, a leading health insurance company focused on the human side of healthcare. In my current role, I focus on the dental insurance field, where I use predictive modeling and data analysis to optimize our provider network and deliver insights to our sales and service teams. I have a passion for applying data-driven solutions to improve the quality and affordability of healthcare.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EXPERIENCE TIMELINE
+       ============================================================ -->
+  <section class="timeline-section" id="timeline">
+    <div class="container">
+      <h2 class="section-heading animate-in">Experience</h2>
+      <p class="section-subtitle animate-in">A brief history of where I've been</p>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card animate-in">
+            <div class="timeline-role">Data Scientist II · Humana</div>
+            <div class="timeline-meta">June 2023 – Present</div>
+            <p class="timeline-desc">Predictive modeling and network analysis for dental insurance. Building tools to help sales and service teams act on data.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card animate-in">
+            <div class="timeline-role">Data Science Intern · Humana</div>
+            <div class="timeline-meta">March 2021 – June 2023</div>
+            <p class="timeline-desc">Developed analytical pipelines and dashboards during multi-year internship leading to full-time conversion.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card animate-in">
+            <div class="timeline-role">Repair Technician · uBreakifix</div>
+            <div class="timeline-meta">2019 – 2021</div>
+            <p class="timeline-desc">Diagnosed and repaired consumer electronics. Built strong problem-solving foundations that translate directly to debugging data pipelines.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROJECTS / WRITING
+       ============================================================ -->
+  <section class="projects-section" id="projects">
+    <div class="container">
+      <h2 class="section-heading animate-in">Writing &amp; Projects</h2>
+      <p class="section-subtitle animate-in">Thoughts on data, healthcare, and technology</p>
+
+      <div class="cards-grid">
+
+        <a href="writing/post-1.html" class="post-card animate-in">
+          <span class="card-tag">Essay</span>
+          <div class="post-card-arrow" aria-hidden="true">→</div>
+          <h3 class="card-title">Predicting Provider Churn in Dental Networks</h3>
+          <p class="card-desc">How survival analysis and gradient boosting can flag at-risk providers before they leave a network.</p>
+        </a>
+
+        <a href="writing/post-2.html" class="post-card animate-in">
+          <span class="card-tag">Technical</span>
+          <div class="post-card-arrow" aria-hidden="true">→</div>
+          <h3 class="card-title">The Hidden Complexity of NPI Data</h3>
+          <p class="card-desc">A deep dive into the National Provider Identifier system and why cleaning it is harder than it looks.</p>
+        </a>
+
+        <a href="writing/post-3.html" class="post-card animate-in">
+          <span class="card-tag">Essay</span>
+          <div class="post-card-arrow" aria-hidden="true">→</div>
+          <h3 class="card-title">Network Effects in Insurance Markets</h3>
+          <p class="card-desc">Why provider networks behave more like social graphs than spreadsheets, and what that means for modeling.</p>
+        </a>
+
+        <a href="writing/post-4.html" class="post-card animate-in">
+          <span class="card-tag">Explainer</span>
+          <div class="post-card-arrow" aria-hidden="true">→</div>
+          <h3 class="card-title">A Non-Technical Primer on Predictive Modeling</h3>
+          <p class="card-desc">Written for the sales teams I support — what the model actually does and doesn't know.</p>
+        </a>
+
+        <a href="writing/post-5.html" class="post-card animate-in">
+          <span class="card-tag">Personal</span>
+          <div class="post-card-arrow" aria-hidden="true">→</div>
+          <h3 class="card-title">Moving to Philadelphia: A Data Scientist's Take</h3>
+          <p class="card-desc">Reflections on relocating solo, building routines, and finding signal in a new city.</p>
+        </a>
+
+        <a href="writing/post-6.html" class="post-card animate-in">
+          <span class="card-tag">Essay</span>
+          <div class="post-card-arrow" aria-hidden="true">→</div>
+          <h3 class="card-title">What Baseball Stats Taught Me About Healthcare Data</h3>
+          <p class="card-desc">Sabermetrics and claims data have more in common than you'd think.</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-name">LM</div>
+      <div class="footer-url">lukembinc.github.io</div>
+      <ul class="footer-links">
+        <li><a href="#" aria-label="GitHub">GitHub</a></li>
+        <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
+      </ul>
+      <div class="footer-copyright">&copy; 2025. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing — LM</title>
+  <meta name="description" content="Essays, explainers, and notes on data science, healthcare, and technology." />
+
+  <script>
+    (function(){
+      var s=localStorage.getItem('theme');
+      var p=window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme=s||(p?'dark':'light');
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html#bio" class="nav-logo">LM</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#timeline" class="nav-hide-mobile">Experience</a></li>
+        <li><a href="../index.html#projects" class="nav-hide-mobile">Projects</a></li>
+        <li><a href="index.html">All Posts</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☽</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="writing-hero container">
+    <h1>Writing</h1>
+    <p>Essays, explainers, and notes on data, healthcare, and technology.</p>
+  </div>
+
+  <div class="writing-feed container">
+
+    <a href="post-1.html" class="feed-item">
+      <div class="feed-meta">
+        <span class="card-tag">Essay</span>
+        <span class="feed-date">November 2024</span>
+      </div>
+      <div class="feed-title">Predicting Provider Churn in Dental Networks</div>
+      <p class="feed-desc">How survival analysis and gradient boosting can flag at-risk providers before they leave a network.</p>
+    </a>
+
+    <a href="post-2.html" class="feed-item">
+      <div class="feed-meta">
+        <span class="card-tag">Technical</span>
+        <span class="feed-date">September 2024</span>
+      </div>
+      <div class="feed-title">The Hidden Complexity of NPI Data</div>
+      <p class="feed-desc">A deep dive into the National Provider Identifier system and why cleaning it is harder than it looks.</p>
+    </a>
+
+    <a href="post-3.html" class="feed-item">
+      <div class="feed-meta">
+        <span class="card-tag">Essay</span>
+        <span class="feed-date">July 2024</span>
+      </div>
+      <div class="feed-title">Network Effects in Insurance Markets</div>
+      <p class="feed-desc">Why provider networks behave more like social graphs than spreadsheets, and what that means for modeling.</p>
+    </a>
+
+    <a href="post-4.html" class="feed-item">
+      <div class="feed-meta">
+        <span class="card-tag">Explainer</span>
+        <span class="feed-date">May 2024</span>
+      </div>
+      <div class="feed-title">A Non-Technical Primer on Predictive Modeling</div>
+      <p class="feed-desc">Written for the sales teams I support — what the model actually does and doesn't know.</p>
+    </a>
+
+    <a href="post-5.html" class="feed-item">
+      <div class="feed-meta">
+        <span class="card-tag">Personal</span>
+        <span class="feed-date">March 2025</span>
+      </div>
+      <div class="feed-title">Moving to Philadelphia: A Data Scientist's Take</div>
+      <p class="feed-desc">Reflections on relocating solo, building routines, and finding signal in a new city.</p>
+    </a>
+
+    <a href="post-6.html" class="feed-item">
+      <div class="feed-meta">
+        <span class="card-tag">Essay</span>
+        <span class="feed-date">January 2025</span>
+      </div>
+      <div class="feed-title">What Baseball Stats Taught Me About Healthcare Data</div>
+      <p class="feed-desc">Sabermetrics and claims data have more in common than you'd think.</p>
+    </a>
+
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-name">LM</div>
+      <div class="footer-url">lukembinc.github.io</div>
+      <ul class="footer-links">
+        <li><a href="#" aria-label="GitHub">GitHub</a></li>
+        <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
+      </ul>
+      <div class="footer-copyright">&copy; 2025. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

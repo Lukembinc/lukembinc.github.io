@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Hidden Complexity of NPI Data — LM</title>
+  <meta name="description" content="A deep dive into the National Provider Identifier system and why cleaning it is harder than it looks." />
+
+  <script>
+    (function(){
+      var s=localStorage.getItem('theme');
+      var p=window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme=s||(p?'dark':'light');
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html#bio" class="nav-logo">LM</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#timeline" class="nav-hide-mobile">Experience</a></li>
+        <li><a href="../index.html#projects" class="nav-hide-mobile">Projects</a></li>
+        <li><a href="index.html">All Posts</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☽</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="post-hero">
+    <a href="../index.html#projects" class="post-back">← Back to projects</a>
+    <h1 class="post-title">The Hidden Complexity of NPI Data</h1>
+    <div class="post-meta">
+      <span class="card-tag">Technical</span>
+      <span class="post-read-time">· 6 min read · September 2024</span>
+    </div>
+  </div>
+
+  <div class="post-body">
+    <p>
+      The National Provider Identifier — the NPI — sounds simple enough. It's a unique 10-digit number assigned to every healthcare provider in the United States. One provider, one number. Clean, deterministic, permanent. What could go wrong?
+    </p>
+    <p>
+      In practice, NPI data is one of the more treacherous datasets I've worked with. Its apparent simplicity conceals a web of edge cases, historical quirks, and structural ambiguities that can silently corrupt any downstream analysis.
+    </p>
+
+    <h2>Type 1 vs. Type 2: The Fundamental Split</h2>
+    <p>
+      The first thing to understand is that there are two kinds of NPIs. Type 1 NPIs are assigned to individual practitioners — a dentist, a physician, a nurse practitioner. Type 2 NPIs are assigned to organizations — a clinic, a hospital system, a group practice.
+    </p>
+    <p>
+      The problem is that a single practitioner often has both. They might bill individually under their Type 1 NPI for services rendered at a private practice, and also appear under a group's Type 2 NPI when working at a clinic. In claims data, this means the same dentist can appear to be two entirely different entities. Naive joins on NPI will give you double-counted utilization, phantom churn, and inflated provider counts.
+    </p>
+
+    <h2>Deactivations, Replacements, and Ghosts</h2>
+    <p>
+      NPIs are supposed to be permanent, but the NPPES registry — the publicly available database — contains deactivated records. Providers who retire, lose licensure, or die are deactivated, but their NPI persists in historical claims. If you're doing any longitudinal analysis, you need a deactivation-aware join strategy, or you'll treat a retired dentist's claims as if they were still active.
+    </p>
+    <p>
+      There's also the reuse problem. While CMS policy says NPIs should never be reused, data entry errors mean this does happen in practice. I've found records where the same NPI appears linked to two demonstrably different individuals based on taxonomy code, state licensure, and address — all inconsistent with each other. These require manual adjudication.
+    </p>
+
+    <h2>Taxonomy Codes Are Not What They Seem</h2>
+    <p>
+      Every NPI record includes taxonomy codes that indicate a provider's specialty. These seem useful for filtering — just keep taxonomy codes starting with "122" if you want general dentists. Except providers can have multiple taxonomy codes, listed in order of "primary" specialization, and the ordering is self-reported and frequently inconsistent.
+    </p>
+    <p>
+      A provider who spent most of their career as an endodontist and recently began offering general dental services might list either as primary. The taxonomy code alone tells you what a provider is credentialed for, not what they actually do.
+    </p>
+
+    <h2>What Actually Works</h2>
+    <p>
+      After significant trial and error, the most reliable approach is to treat the NPI as a starting key, not an identity. We layer in additional signals — name matching, address proximity, state licensure records, and claims taxonomy distributions — to build a probabilistic identity graph. This is more work than a simple join, but it catches the edge cases that pure NPI-based analysis misses.
+    </p>
+    <p>
+      The lesson generalizes: administrative identifiers are designed for billing, not analysis. Using them for research requires understanding the incentives and processes that generated them.
+    </p>
+  </div>
+
+  <div class="post-nav">
+    <a href="post-1.html" class="post-nav-link prev">
+      <span class="post-nav-label">← Previous</span>
+      <span class="post-nav-title">Predicting Provider Churn in Dental Networks</span>
+    </a>
+    <a href="post-3.html" class="post-nav-link next">
+      <span class="post-nav-label">Next →</span>
+      <span class="post-nav-title">Network Effects in Insurance Markets</span>
+    </a>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-name">LM</div>
+      <div class="footer-url">lukembinc.github.io</div>
+      <ul class="footer-links">
+        <li><a href="#" aria-label="GitHub">GitHub</a></li>
+        <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
+      </ul>
+      <div class="footer-copyright">&copy; 2025. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
