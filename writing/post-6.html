@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Baseball Stats Taught Me About Healthcare Data — LM</title>
+  <meta name="description" content="Sabermetrics and claims data have more in common than you'd think." />
+
+  <script>
+    (function(){
+      var s=localStorage.getItem('theme');
+      var p=window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme=s||(p?'dark':'light');
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html#bio" class="nav-logo">LM</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#timeline" class="nav-hide-mobile">Experience</a></li>
+        <li><a href="../index.html#projects" class="nav-hide-mobile">Projects</a></li>
+        <li><a href="index.html">All Posts</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☽</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="post-hero">
+    <a href="../index.html#projects" class="post-back">← Back to projects</a>
+    <h1 class="post-title">What Baseball Stats Taught Me About Healthcare Data</h1>
+    <div class="post-meta">
+      <span class="card-tag">Essay</span>
+      <span class="post-read-time">· 5 min read · January 2025</span>
+    </div>
+  </div>
+
+  <div class="post-body">
+    <p>
+      I grew up following baseball obsessively enough to understand OPS before I understood algebra. The sabermetrics revolution — the systematic application of rigorous statistical thinking to baseball performance — was already well underway by the time I was paying attention, but its core insights were formative for how I think about data analysis in general. Years later, working with healthcare claims data, I keep finding the analogies surprisingly precise.
+    </p>
+
+    <h2>The Problem of Context-Dependence</h2>
+    <p>
+      One of sabermetrics' core contributions was recognizing that raw statistics are context-dependent in ways that confound naive comparisons. A hitter's batting average tells you something, but it doesn't tell you whether they hit in pitcher-friendly parks, whether they faced weaker or stronger rotations, or whether the players around them in the lineup affected their opportunities. Park-adjusted stats and lineup-independent metrics exist to strip away these contextual effects.
+    </p>
+    <p>
+      Healthcare data has the same problem. A provider's claim volume tells you something, but not whether they practice in a high-need area, what their patient panel demographics look like, or what the local referral ecosystem funnels to them. A dental clinic in a rural county serves a structurally different patient population than one in a dense urban neighborhood, and comparing raw utilization rates between them is as misleading as comparing home run counts between a player at Coors Field and one at Petco Park.
+    </p>
+
+    <h2>Sample Size Conservatism</h2>
+    <p>
+      Sabermetricians learned hard lessons about small sample sizes. A player's first 50 at-bats of the season tell you very little about what the next 450 will look like. Hot starts are largely noise. The community developed sharp heuristics for when statistics become reliable — roughly how many plate appearances you need before batting average stabilizes, how many innings before ERA settles.
+    </p>
+    <p>
+      I apply the same conservatism to provider-level metrics. A dentist who filed 12 claims in a quarter has a utilization profile that means almost nothing statistically. Any model trained to treat that as signal will find patterns in noise. We set minimum volume thresholds before a provider enters our modeling pipeline, and we communicate those thresholds clearly so that end-users understand why some providers simply aren't scored.
+    </p>
+
+    <h2>Process vs. Outcome</h2>
+    <p>
+      Modern baseball analysis distinguishes between process metrics (how hard did the ball come off the bat?) and outcome metrics (did it become a hit?). Outcomes are noisy; a well-struck ball can be caught by a diving outfielder. Process metrics — exit velocity, launch angle — are more predictive of future performance because they measure what the player actually controlled.
+    </p>
+    <p>
+      In provider analytics, claims-based outcomes are similarly noisy. Denial rates, for example, are heavily influenced by coding practices and payer-side adjudication patterns that have nothing to do with provider quality. Focusing on process signals — consistency of documentation, procedure mix coherence, referral pattern stability — gives you a cleaner picture of underlying provider behavior.
+    </p>
+    <p>
+      The deeper lesson from both domains is the same: figure out what you're actually trying to measure, and don't assume the most available metric is the right one.
+    </p>
+  </div>
+
+  <div class="post-nav">
+    <a href="post-5.html" class="post-nav-link prev">
+      <span class="post-nav-label">← Previous</span>
+      <span class="post-nav-title">Moving to Philadelphia: A Data Scientist's Take</span>
+    </a>
+    <div class="post-nav-link next">
+      <!-- No next post -->
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-name">LM</div>
+      <div class="footer-url">lukembinc.github.io</div>
+      <ul class="footer-links">
+        <li><a href="#" aria-label="GitHub">GitHub</a></li>
+        <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
+      </ul>
+      <div class="footer-copyright">&copy; 2025. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
