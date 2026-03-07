@@ -333,12 +333,22 @@ section {
 }
 
 .timeline-card {
+  position: relative;
   background: var(--bg-card);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 1.5rem;
   border-left: 3px solid var(--primary);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.timeline-logo {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 48px;
+  height: auto;
+  object-fit: contain;
 }
 
 .timeline-card:hover {
