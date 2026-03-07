@@ -344,9 +344,9 @@ section {
 
 .timeline-logo {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 48px;
+  top: 24px;
+  right: 24px;
+  width: 100px;
   height: auto;
   object-fit: contain;
 }
