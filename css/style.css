@@ -346,9 +346,12 @@ section {
   position: absolute;
   top: 24px;
   right: 24px;
-  width: 100px;
-  height: auto;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px;
 }
 
 .timeline-card:hover {
