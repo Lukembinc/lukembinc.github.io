@@ -756,6 +756,10 @@ section {
 }
 
 @media (max-width: 768px) {
+  .timeline-logo {
+    display: none;
+  }
+
   .hero-inner {
     flex-direction: column-reverse;
     text-align: center;
