@@ -755,7 +755,7 @@ section {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 805px) {
   .timeline-logo {
     display: none;
   }
